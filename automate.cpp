@@ -26,3 +26,8 @@ Symbole * Automate::popSymbol() {
     symboles.pop_back();
     return s;
 }
+
+void Automate::popAndDestroySymbol() {
+    delete symboles.back();
+    symboles.pop_back();
+}
