@@ -1,6 +1,7 @@
 #include "etat.h"
 #include "symbole.h"
 #include <stack>
+#include "lexer.h"
 
 class Automate {
    public:
@@ -14,4 +15,5 @@ class Automate {
    protected:
         stack<Symbole *> symboles;
         stack<Etat *> etats;
+        lexer * l;
 };
