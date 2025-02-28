@@ -5,7 +5,8 @@
 
 class Automate {
    public:
-      Automate();
+      Automate(Lexer * lexer) {etats.push_back(new E0);
+                              this->lexer = lexer;}
         virtual ~Automate();
         void decalage(Symbole * s, Etat * e);
         void reduction(int n, Symbole * s);
@@ -14,6 +15,7 @@ class Automate {
         void erreur();
          Symbole * popSymbol();
          void popAndDestroySymbol();
+         void execute();
    protected:
         vector<Symbole *> symboles;
         vector<Etat *> etats;

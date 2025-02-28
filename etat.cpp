@@ -29,7 +29,7 @@ bool E1::transition(Automate & automate, Symbole * s) {
             break;
         case FIN:
             automate.accepte();
-            break;
+            return true;
         default:
             automate.erreur();
             break;

@@ -39,3 +39,14 @@ void Automate::accepte() {
 void Automate::erreur() {
     cout<<"Erreur de syntaxe"<<endl;
 }
+
+void Automate::execute() {
+    Symbole * s = lexer->Consulter();
+    Etat * e = etats.back();
+    while(e->transition() != false) {
+        e = etats.back();
+        s = symboles.back();
+        ///Afficher et vérifier ah zebi
+    }
+    
+}
