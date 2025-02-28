@@ -120,16 +120,25 @@ bool E6::transition(Automate & automate, Symbole * s) {
 bool E7::transition(Automate & automate, Symbole * s) {
     switch(*s) {
         case PLUS:
-            ///
+            Expr * s1 = (Expr *) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr * s2 = (Expr *) automate.popSymbol();
+            automate.reduction(3, new ExprPlus(s2, s1));
             break;
         case MULT:
-            ///
+            automate.decalage(s, new E5);
             break;
         case CLOSEPAR:
-            ///
+            Expr * s1 = (Expr *) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr * s2 = (Expr *) automate.popSymbol();
+            automate.reduction(3, new ExprPlus(s2, s1));
             break;
         case FIN:
-            ///
+            Expr * s1 = (Expr *) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr * s2 = (Expr *) automate.popSymbol();
+            automate.reduction(3, new ExprPlus(s2, s1));
             break;
         case default:
             cout<<"Erreur de syntaxe"<<endl;

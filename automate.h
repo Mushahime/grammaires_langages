@@ -15,5 +15,5 @@ class Automate {
    protected:
         stack<Symbole *> symboles;
         stack<Etat *> etats;
-        lexer * l;
+        Lexer * l;
 };
