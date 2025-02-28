@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include "symbole.h"
 
 class Expr : public Symbole {
