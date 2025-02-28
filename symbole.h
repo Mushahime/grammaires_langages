@@ -24,6 +24,7 @@ class Entier : public Symbole {
       Entier(int v) : Symbole(INT), valeur(v) { }
       ~Entier() { }
       virtual void Affiche();
+      int getValeur() {return valeur;}
    protected:
       int valeur;
 };

@@ -58,20 +58,28 @@ bool E2::transition(Automate & automate, Symbole * s) {
 bool E3::transition(Automate & automate, Symbole * s) {
     switch(*s) {
         case PLUS:
-            Expr * s1 = (Expr*) automate.popSymbol();
-            automate.reduction(1, new ExprVal(s1));
+            Entier * e = (Entier*) automate.popSymbol();
+            Expr * s1 = new ExprVal(e->getValeur());
+            automate.reduction(1, s1);
+            //delete e;
             break;
         case MULT:
-            Expr * s1 = (Expr*) automate.popSymbol();
-            automate.reduction(1, new ExprVal(s1));
+            Entier * e = (Entier*) automate.popSymbol();
+            Expr * s1 = new ExprVal(e->getValeur());
+            automate.reduction(1, s1);
+            //delete e;
             break;
         case CLOSEPAR:
-            Expr * s1 = (Expr*) automate.popSymbol();
-            automate.reduction(1, new ExprVal(s1));
+            Entier * e = (Entier*) automate.popSymbol();
+            Expr * s1 = new ExprVal(e->getValeur());
+            automate.reduction(1, s1);
+            //delete e;
             break;
         case FIN:
-            Expr * s1 = (Expr*) automate.popSymbol();
-            automate.reduction(1, new ExprVal(s1));
+            Entier * e = (Entier*) automate.popSymbol();
+            Expr * s1 = new ExprVal(e->getValeur());
+            automate.reduction(1, s1);
+            //delete e;
             break;
         default:
             automate.erreur();
