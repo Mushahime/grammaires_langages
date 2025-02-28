@@ -1,5 +1,7 @@
 #include <string>
 using namespace std;
+#include "automate.h"
+#include "symbole.h"
 
 class Etat {
    public:

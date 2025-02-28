@@ -3,9 +3,9 @@
 #include <string>
 using namespace std;
 
-enum Identificateurs { OPENPAR, CLOSEPAR, PLUS, MULT, INT, FIN, ERREUR };
+enum Identificateurs { OPENPAR, CLOSEPAR, PLUS, MULT, INT, FIN, ERREUR, EXPR };
 
-const string Etiquettes[] = { "OPENPAR", "CLOSEPAR", "PLUS", "MULT", "INT", "FIN", "ERREUR" };
+const string Etiquettes[] = { "OPENPAR", "CLOSEPAR", "PLUS", "MULT", "INT", "FIN", "ERREUR", "EXPR" };
 
 class Symbole {
    public:
@@ -27,3 +27,53 @@ class Entier : public Symbole {
       int valeur;
 };
 
+
+class Expr : public Symbole {
+   public:
+       Expr():Symbole(EXPR) {}
+       virtual ~Expr() {}
+       virtual double eval (const map<string,double> & valeurs) =0;
+};
+
+// E + E
+class ExprPlus : public Expr {
+   public:
+       ExprPlus(Expr * e1, Expr * e2):Expr(),e1(e1),e2(e2) {}
+       virtual ~ExprPlus() { delete e1; delete e2; }
+       virtual double eval (const map<string,double> & valeurs) { return e1->eval(valeurs) + e2->eval(valeurs); }
+   protected:
+       Expr * e1;
+       Expr * e2;
+};
+
+// E * E
+class ExprMult : public Expr {
+   public:
+       ExprMult(Expr * e1, Expr * e2):Expr(),e1(e1),e2(e2) {}
+       virtual ~ExprMult() { delete e1; delete e2; }
+       virtual double eval (const map<string,double> & valeurs) { return e1->eval(valeurs) * e2->eval(valeurs); }
+   protected:
+       Expr * e1;
+       Expr * e2;
+};
+
+// E -> ( E )
+class ExprPar : public Expr {
+   public:
+       ExprPar(Expr * e):Expr(),e(e) {}
+       virtual ~ExprPar() { delete e; }
+       virtual double eval (const map<string,double> & valeurs) { return e->eval(valeurs); }
+   protected:
+       Expr * e;
+}; 
+
+
+// E -> val
+class ExprVal : public Expr {
+   public:
+       ExprVal(int val):Expr(),val(val) {}
+       virtual ~ExprVal() {}
+       virtual double eval (const map<string,double> & valeurs) { return val; }
+   protected:
+       int val;
+};
