@@ -1,3 +1,8 @@
+#include "expr.h"
+#include "symbole.h"
+#include "automate.h"
+#include <iostream>
+
 bool E0::transition(Automate & automate, Symbole * s) {
     switch(*s) {
         case VARIABLE:
@@ -22,6 +27,9 @@ bool E1::transition(Automate & automate, Symbole * s) {
             break;
         case PLUS:
             automate.decalage(s, new E4);
+            break;
+        case FIN:
+            automate.accepte();
             break;
         case default:
             cout<<"Erreur de syntaxe"<<endl;
@@ -50,16 +58,20 @@ bool E2::transition(Automate & automate, Symbole * s) {
 bool E3::transition(Automate & automate, Symbole * s) {
     switch(*s) {
         case PLUS:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new ExprVal(s1));
             break;
         case MULT:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new ExprVal(s1));
             break;
         case CLOSEPAR:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new ExprVal(s1));
             break;
         case FIN:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new ExprVal(s1));
             break;
         case default:
             cout<<"Erreur de syntaxe"<<endl;
@@ -140,16 +152,28 @@ bool E7::transition(Automate & automate, Symbole * s) {
 bool E8::transition(Automate & automate, Symbole * s) {
     switch(*s) {
         case PLUS:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr * s2 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprMult(s2,s1));
             break;
         case MULT:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr * s2 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprMult(s2,s1));
             break;
         case CLOSEPAR:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr * s2 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprMult(s2,s1));
             break;
         case FIN:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr * s2 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprMult(s2,s1));
             break;
         case default:
             cout<<"Erreur de syntaxe"<<endl;
@@ -160,16 +184,20 @@ bool E8::transition(Automate & automate, Symbole * s) {
 bool E9::transition(Automate & automate, Symbole * s) {
     switch(*s) {
         case PLUS:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new ExprPar(s1));
             break;
         case MULT:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new ExprPar(s1));
             break;
         case CLOSEPAR:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new ExprPar(s1));
             break;
         case FIN:
-            ///
+            Expr * s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new ExprPar(s1));
             break;
         case default:
             cout<<"Erreur de syntaxe"<<endl;
