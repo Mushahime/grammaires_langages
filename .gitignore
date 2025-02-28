@@ -1,1 +1,18 @@
+# Ignore build directories
 build/
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore CMake generated files
+CMakeFiles/
+CMakeCache.txt
+
+# Ignore executables
+*.exe
+*.out
+*.o
+
+# Ignore temporary files
+*.tmp
+*.temp
