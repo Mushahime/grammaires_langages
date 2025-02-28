@@ -16,7 +16,10 @@ set(SOURCES
     lexer.cpp
     main.cpp
     symbole.cpp
-)
+    etat.cpp
+    expr.cpp
+    etat.cpp
+    )
 
 # Créer un exécutable avec les sources définies
 add_executable(gl ${SOURCES})
