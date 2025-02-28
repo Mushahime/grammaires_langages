@@ -31,3 +31,11 @@ void Automate::popAndDestroySymbol() {
     delete symboles.back();
     symboles.pop_back();
 }
+
+void Automate::accepte() {
+    cout<<"Expression correcte"<<endl;
+}
+
+void Automate::erreur() {
+    cout<<"Erreur de syntaxe"<<endl;
+}

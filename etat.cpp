@@ -13,8 +13,8 @@ bool E0::transition(Automate & automate, Symbole * s) {
             break;
         case EXPR:
             automate.transitionsimple(s, new E1);
-        case default:
-            cout<<"Erreur de syntaxe"<<endl;
+        default:
+            automate.erreur();
             break;
     }
     return false;
@@ -31,8 +31,8 @@ bool E1::transition(Automate & automate, Symbole * s) {
         case FIN:
             automate.accepte();
             break;
-        case default:
-            cout<<"Erreur de syntaxe"<<endl;
+        default:
+            automate.erreur();
             break;
     }
     return false;
@@ -48,8 +48,8 @@ bool E2::transition(Automate & automate, Symbole * s) {
             break;
         case EXPR:
             automate.transitionsimple(s, new E6);
-        case default:
-            cout<<"Erreur de syntaxe"<<endl;
+        default:
+            automate.erreur();
             break;
     }
     return false;
@@ -73,8 +73,8 @@ bool E3::transition(Automate & automate, Symbole * s) {
             Expr * s1 = (Expr*) automate.popSymbol();
             automate.reduction(1, new ExprVal(s1));
             break;
-        case default:
-            cout<<"Erreur de syntaxe"<<endl;
+        default:
+            automate.erreur();
             break;
     }
     return false;
@@ -90,8 +90,8 @@ bool E4::transition(Automate & automate, Symbole * s) {
             break;
         case EXPR:
             automate.transitionsimple(s, new E7);
-        case default:
-            cout<<"Erreur de syntaxe"<<endl;
+        default:
+            automate.erreur();
             break;
     }
     return false;
@@ -106,8 +106,8 @@ bool E5::transition(Automate & automate, Symbole * s) {
             break;
         case EXPR:
             automate.transitionsimple(s, new E8);
-        case default:
-            cout<<"Erreur de syntaxe"<<endl;
+        default:
+            automate.erreur();
             break;
     }
     return false;
@@ -123,8 +123,8 @@ bool E6::transition(Automate & automate, Symbole * s) {
         case CLOSEPAR:
             automate.decalage(s, new E9);
             break;
-        case default:
-            cout<<"Erreur de syntaxe"<<endl;
+        default:
+            automate.erreur();
             break;
     }
     return false;
@@ -152,8 +152,8 @@ bool E7::transition(Automate & automate, Symbole * s) {
             Expr * s2 = (Expr *) automate.popSymbol();
             automate.reduction(3, new ExprPlus(s2, s1));
             break;
-        case default:
-            cout<<"Erreur de syntaxe"<<endl;
+        default:
+            automate.erreur();
             break;
     }
     return false;
@@ -184,8 +184,8 @@ bool E8::transition(Automate & automate, Symbole * s) {
             Expr * s2 = (Expr*) automate.popSymbol();
             automate.reduction(3, new ExprMult(s2,s1));
             break;
-        case default:
-            cout<<"Erreur de syntaxe"<<endl;
+        default:
+            automate.erreur();
             break;
     }
     return false;
@@ -208,8 +208,8 @@ bool E9::transition(Automate & automate, Symbole * s) {
             Expr * s1 = (Expr*) automate.popSymbol();
             automate.reduction(1, new ExprPar(s1));
             break;
-        case default:
-            cout<<"Erreur de syntaxe"<<endl;
+        default:
+            automate.erreur();
             break;
     }
     return false;

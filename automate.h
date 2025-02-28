@@ -1,6 +1,6 @@
 #include "etat.h"
 #include "symbole.h"
-#include <stack>
+#include <vector>
 #include "lexer.h"
 
 class Automate {
@@ -12,8 +12,10 @@ class Automate {
         void transitionsimple(Symbole * s, Etat * e);
         void accepte();
         void erreur();
+         Symbole * popSymbol();
+         void popAndDestroySymbol();
    protected:
-        stack<Symbole *> symboles;
-        stack<Etat *> etats;
-        Lexer * l;
+        vector<Symbole *> symboles;
+        vector<Etat *> etats;
+        Lexer * lexer;
 };
