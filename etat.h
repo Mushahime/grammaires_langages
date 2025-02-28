@@ -12,72 +12,72 @@ class Etat {
       string name;
 };
 
-class Etat0 : public Etat {
+class E0 : public Etat {
    public:
-      Etat0() : Etat("Etat0") { }
-      ~Etat0() { }
+      E0() : Etat("Etat0") { }
+      ~E0() { }
       bool transition(Automate & automate, Symbole * s);
 };
 
-class Etat1 : public Etat {
+class E1 : public Etat {
    public:
-      Etat1() : Etat("Etat1") { }
-      ~Etat1() { }
+      E1() : Etat("Etat1") { }
+      ~E1() { }
       bool transition(Automate & automate, Symbole * s);
 };
 
-class Etat2 : public Etat {
+class E2 : public Etat {
    public:
-      Etat2() : Etat("Etat2") { }
-      ~Etat2() { }
+      E2() : Etat("Etat2") { }
+      ~E2() { }
       bool transition(Automate & automate, Symbole * s);
 };
 
-class Etat3 : public Etat {
+class E3 : public Etat {
    public:
-      Etat3() : Etat("Etat3") { }
-      ~Etat3() { }
+      E3() : Etat("Etat3") { }
+      ~E3() { }
       bool transition(Automate & automate, Symbole * s);
 };
 
-class Etat4 : public Etat {
+class E4 : public Etat {
    public:
-      Etat4() : Etat("Etat4") { }
-      ~Etat4() { }
+      E4() : Etat("Etat4") { }
+      ~E4() { }
       bool transition(Automate & automate, Symbole * s);
 };
 
-class Etat5 : public Etat {
+class E5 : public Etat {
    public:
-      Etat5() : Etat("Etat5") { }
-      ~Etat5() { }
+      E5() : Etat("Etat5") { }
+      ~E5() { }
       bool transition(Automate & automate, Symbole * s);
 };
 
-class Etat6 : public Etat {
+class E6 : public Etat {
    public:
-      Etat6() : Etat("Etat6") { }
-      ~Etat6() { }
+      E6() : Etat("Etat6") { }
+      ~E6() { }
       bool transition(Automate & automate, Symbole * s);
 };
 
-class Etat7 : public Etat {
+class E7 : public Etat {
    public:
-      Etat7() : Etat("Etat7") { }
-      ~Etat7() { }
+      E7() : Etat("Etat7") { }
+      ~E7() { }
       bool transition(Automate & automate, Symbole * s);
 };
 
-class Etat8 : public Etat {
+class E8 : public Etat {
    public:
-      Etat8() : Etat("Etat8") { }
-      ~Etat8() { }
+      E8() : Etat("Etat8") { }
+      ~E8() { }
       bool transition(Automate & automate, Symbole * s);
 };
 
-class Etat9 : public Etat {
+class E9 : public Etat {
    public:
-      Etat9() : Etat("Etat9") { }
-      ~Etat9() { }
+      E9() : Etat("Etat9") { }
+      ~E9() { }
       bool transition(Automate & automate, Symbole * s);
 };
