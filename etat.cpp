@@ -1,4 +1,3 @@
-#include "expr.h"
 #include "symbole.h"
 #include "automate.h"
 #include <iostream>
@@ -56,28 +55,30 @@ bool E2::transition(Automate & automate, Symbole * s) {
 }
 
 bool E3::transition(Automate & automate, Symbole * s) {
+    Entier * e = nullptr;
+    Expr * s1 = nullptr;
     switch(*s) {
         case PLUS:
-            Entier * e = (Entier*) automate.popSymbol();
-            Expr * s1 = new ExprVal(e->getValeur());
+            e = (Entier*) automate.popSymbol();
+            s1 = new ExprVal(e->getValeur());
             automate.reduction(1, s1);
             //delete e;
             break;
         case MULT:
-            Entier * e = (Entier*) automate.popSymbol();
-            Expr * s1 = new ExprVal(e->getValeur());
+            e = (Entier*) automate.popSymbol();
+            s1 = new ExprVal(e->getValeur());
             automate.reduction(1, s1);
             //delete e;
             break;
         case CLOSEPAR:
-            Entier * e = (Entier*) automate.popSymbol();
-            Expr * s1 = new ExprVal(e->getValeur());
+            e = (Entier*) automate.popSymbol();
+            s1 = new ExprVal(e->getValeur());
             automate.reduction(1, s1);
             //delete e;
             break;
         case FIN:
-            Entier * e = (Entier*) automate.popSymbol();
-            Expr * s1 = new ExprVal(e->getValeur());
+            e = (Entier*) automate.popSymbol();
+            s1 = new ExprVal(e->getValeur());
             automate.reduction(1, s1);
             //delete e;
             break;
@@ -138,26 +139,28 @@ bool E6::transition(Automate & automate, Symbole * s) {
     return false;
 }
 bool E7::transition(Automate & automate, Symbole * s) {
+    Expr * s1 = nullptr;
+    Expr * s2 = nullptr;
     switch(*s) {
         case PLUS:
-            Expr * s1 = (Expr *) automate.popSymbol();
+            s1 = (Expr *) automate.popSymbol();
             automate.popAndDestroySymbol();
-            Expr * s2 = (Expr *) automate.popSymbol();
+            s2 = (Expr *) automate.popSymbol();
             automate.reduction(3, new ExprPlus(s2, s1));
             break;
         case MULT:
             automate.decalage(s, new E5);
             break;
         case CLOSEPAR:
-            Expr * s1 = (Expr *) automate.popSymbol();
+            s1 = (Expr *) automate.popSymbol();
             automate.popAndDestroySymbol();
-            Expr * s2 = (Expr *) automate.popSymbol();
+            s2 = (Expr *) automate.popSymbol();
             automate.reduction(3, new ExprPlus(s2, s1));
             break;
         case FIN:
-            Expr * s1 = (Expr *) automate.popSymbol();
+            s1 = (Expr *) automate.popSymbol();
             automate.popAndDestroySymbol();
-            Expr * s2 = (Expr *) automate.popSymbol();
+            s2 = (Expr *) automate.popSymbol();
             automate.reduction(3, new ExprPlus(s2, s1));
             break;
         default:
@@ -167,29 +170,31 @@ bool E7::transition(Automate & automate, Symbole * s) {
     return false;
 }
 bool E8::transition(Automate & automate, Symbole * s) {
+    Expr * s1 = nullptr;
+    Expr * s2 = nullptr;
     switch(*s) {
         case PLUS:
-            Expr * s1 = (Expr*) automate.popSymbol();
+            s1 = (Expr*) automate.popSymbol();
             automate.popAndDestroySymbol();
-            Expr * s2 = (Expr*) automate.popSymbol();
+            s2 = (Expr*) automate.popSymbol();
             automate.reduction(3, new ExprMult(s2,s1));
             break;
         case MULT:
-            Expr * s1 = (Expr*) automate.popSymbol();
+            s1 = (Expr*) automate.popSymbol();
             automate.popAndDestroySymbol();
-            Expr * s2 = (Expr*) automate.popSymbol();
+            s2 = (Expr*) automate.popSymbol();
             automate.reduction(3, new ExprMult(s2,s1));
             break;
         case CLOSEPAR:
-            Expr * s1 = (Expr*) automate.popSymbol();
+            s1 = (Expr*) automate.popSymbol();
             automate.popAndDestroySymbol();
-            Expr * s2 = (Expr*) automate.popSymbol();
+            s2 = (Expr*) automate.popSymbol();
             automate.reduction(3, new ExprMult(s2,s1));
             break;
         case FIN:
-            Expr * s1 = (Expr*) automate.popSymbol();
+            s1 = (Expr*) automate.popSymbol();
             automate.popAndDestroySymbol();
-            Expr * s2 = (Expr*) automate.popSymbol();
+            s2 = (Expr*) automate.popSymbol();
             automate.reduction(3, new ExprMult(s2,s1));
             break;
         default:
@@ -199,21 +204,22 @@ bool E8::transition(Automate & automate, Symbole * s) {
     return false;
 }
 bool E9::transition(Automate & automate, Symbole * s) {
+    Expr * s1 = nullptr;
     switch(*s) {
         case PLUS:
-            Expr * s1 = (Expr*) automate.popSymbol();
+            s1 = (Expr*) automate.popSymbol();
             automate.reduction(1, new ExprPar(s1));
             break;
         case MULT:
-            Expr * s1 = (Expr*) automate.popSymbol();
+            s1 = (Expr*) automate.popSymbol();
             automate.reduction(1, new ExprPar(s1));
             break;
         case CLOSEPAR:
-            Expr * s1 = (Expr*) automate.popSymbol();
+            s1 = (Expr*) automate.popSymbol();
             automate.reduction(1, new ExprPar(s1));
             break;
         case FIN:
-            Expr * s1 = (Expr*) automate.popSymbol();
+            s1 = (Expr*) automate.popSymbol();
             automate.reduction(1, new ExprPar(s1));
             break;
         default:

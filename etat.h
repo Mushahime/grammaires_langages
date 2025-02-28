@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 using namespace std;
 #include "symbole.h"
 
@@ -10,7 +11,6 @@ class Etat {
       virtual ~Etat() { }
       virtual bool transition(Automate & automate, Symbole * s) = 0;
       virtual string getName() { return name; }
-      virtual print() const { cout << name; }
    protected:
       string name;
 };

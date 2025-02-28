@@ -17,8 +17,7 @@ set(SOURCES
     main.cpp
     symbole.cpp
     etat.cpp
-    expr.cpp
-    etat.cpp
+    automate.cpp
     )
 
 # Créer un exécutable avec les sources définies
