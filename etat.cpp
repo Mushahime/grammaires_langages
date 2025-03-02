@@ -67,25 +67,25 @@ bool E3::transition(Automate & automate, Symbole * s) {
 
             automate.reduction(1, s1);
 
-            //delete e;
+            delete e;
             break;
         case MULT:
             e = (Entier*) automate.popSymbol();
             s1 = new ExprVal(e->getValeur());
             automate.reduction(1, s1);
-            //delete e;
+            delete e;
             break;
         case CLOSEPAR:
             e = (Entier*) automate.popSymbol();
             s1 = new ExprVal(e->getValeur());
             automate.reduction(1, s1);
-            //delete e;
+            delete e;
             break;
         case FIN:
             e = (Entier*) automate.popSymbol();
             s1 = new ExprVal(e->getValeur());
             automate.reduction(1, s1);
-            //delete e;
+            delete e;
             break;
         default:
             automate.erreur();
