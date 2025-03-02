@@ -16,9 +16,7 @@ void Automate::transitionsimple(Symbole * s, Etat * e) {
     symboles.push_back(s);
     etats.push_back(e);
 
-    //si on est pas à la fin de la chaine on recule d'un symbole sinon on reste sur le dernier symbole
-
-    lexer->TeteMoinsUn();
+    //lexer->TeteMoinsUn();
 }
 
 void Automate::decalage(Symbole * s, Etat * e) {
@@ -50,7 +48,7 @@ void Automate::accepte() {
 
 void Automate::erreur() {
     cout<<"Erreur de syntaxe"<<endl;
-    //exit(1);
+    exit(1);
 }
 
 double Automate::execute() {
@@ -68,7 +66,7 @@ double Automate::execute() {
             break;
         }
 
-        lexer->Avancer();
+        //lexer->Avancer();
 
         printf("Liste des états : ");
         for (auto etat : etats) {

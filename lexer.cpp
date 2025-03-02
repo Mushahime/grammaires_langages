@@ -58,6 +58,6 @@ void Lexer::Avancer() {
 }
 
 Lexer::~Lexer() {
-   if (tampon) delete tampon;
+   delete tampon;
 }
 

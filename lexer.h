@@ -5,6 +5,8 @@
 #include <vector>
 using namespace std;
 
+//extern vector<Symbole *> S;
+
 class Lexer {
 
    public:
