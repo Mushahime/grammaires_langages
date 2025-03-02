@@ -90,6 +90,7 @@ double Automate::execute() {
 }
 
 Automate::~Automate() {
+
     for (auto symbole : symboles) {
         delete symbole;
     }

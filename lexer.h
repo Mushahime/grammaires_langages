@@ -2,6 +2,7 @@
 
 #include <string>
 #include "symbole.h"
+#include <vector>
 using namespace std;
 
 class Lexer {
