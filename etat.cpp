@@ -4,7 +4,7 @@
 
 bool E0::transition(Automate & automate, Symbole * s) {
     switch(*s) {
-        case VARIABLE:
+        case INT:
             automate.decalage(s, new E3);
             break;
         case OPENPAR:
@@ -12,6 +12,7 @@ bool E0::transition(Automate & automate, Symbole * s) {
             break;
         case EXPR:
             automate.transitionsimple(s, new E1);
+            break;
         default:
             automate.erreur();
             break;
@@ -39,7 +40,7 @@ bool E1::transition(Automate & automate, Symbole * s) {
 
 bool E2::transition(Automate & automate, Symbole * s) {
     switch(*s) {
-        case VARIABLE:
+        case INT:
             automate.decalage(s, new E3);
             break;
         case OPENPAR:
@@ -47,6 +48,7 @@ bool E2::transition(Automate & automate, Symbole * s) {
             break;
         case EXPR:
             automate.transitionsimple(s, new E6);
+            break;
         default:
             automate.erreur();
             break;
@@ -60,8 +62,11 @@ bool E3::transition(Automate & automate, Symbole * s) {
     switch(*s) {
         case PLUS:
             e = (Entier*) automate.popSymbol();
+
             s1 = new ExprVal(e->getValeur());
+
             automate.reduction(1, s1);
+
             //delete e;
             break;
         case MULT:
@@ -91,7 +96,7 @@ bool E3::transition(Automate & automate, Symbole * s) {
 
 bool E4::transition(Automate & automate, Symbole * s) {
     switch(*s) {
-        case VARIABLE:
+        case INT:
             automate.decalage(s, new E3);
             break;
         case OPENPAR:
@@ -99,6 +104,7 @@ bool E4::transition(Automate & automate, Symbole * s) {
             break;
         case EXPR:
             automate.transitionsimple(s, new E7);
+            break;
         default:
             automate.erreur();
             break;
@@ -107,7 +113,7 @@ bool E4::transition(Automate & automate, Symbole * s) {
 }
 bool E5::transition(Automate & automate, Symbole * s) {
     switch(*s) {
-        case VARIABLE:
+        case INT:
             automate.decalage(s, new E3);
             break;
         case OPENPAR:
@@ -115,6 +121,7 @@ bool E5::transition(Automate & automate, Symbole * s) {
             break;
         case EXPR:
             automate.transitionsimple(s, new E8);
+            break;
         default:
             automate.erreur();
             break;
@@ -207,20 +214,28 @@ bool E9::transition(Automate & automate, Symbole * s) {
     Expr * s1 = nullptr;
     switch(*s) {
         case PLUS:
+            automate.popAndDestroySymbol();
             s1 = (Expr*) automate.popSymbol();
-            automate.reduction(1, new ExprPar(s1));
+            automate.popAndDestroySymbol();
+            automate.reduction(3, new ExprPar(s1));
             break;
         case MULT:
+            automate.popAndDestroySymbol();
             s1 = (Expr*) automate.popSymbol();
-            automate.reduction(1, new ExprPar(s1));
+            automate.popAndDestroySymbol();
+            automate.reduction(3, new ExprPar(s1));
             break;
-        case CLOSEPAR:
+        case CLOSEPAR: 
+            automate.popAndDestroySymbol();
             s1 = (Expr*) automate.popSymbol();
-            automate.reduction(1, new ExprPar(s1));
+            automate.popAndDestroySymbol();
+            automate.reduction(3, new ExprPar(s1));
             break;
         case FIN:
+            automate.popAndDestroySymbol();
             s1 = (Expr*) automate.popSymbol();
-            automate.reduction(1, new ExprPar(s1));
+            automate.popAndDestroySymbol();
+            automate.reduction(3, new ExprPar(s1));
             break;
         default:
             automate.erreur();

@@ -7,16 +7,23 @@ void Automate::reduction(int n,Symbole * s) {
         delete(etats.back());
         etats.pop_back();
     }
+    
+
     etats.back()->transition(*this,s);
 }
 
 void Automate::transitionsimple(Symbole * s, Etat * e) {
     symboles.push_back(s);
     etats.push_back(e);
+
+    //si on est pas à la fin de la chaine on recule d'un symbole sinon on reste sur le dernier symbole
+
+    lexer->TeteMoinsUn();
 }
 
 void Automate::decalage(Symbole * s, Etat * e) {
     symboles.push_back(s);
+
     etats.push_back(e);
     lexer->Avancer();
 }
@@ -33,20 +40,63 @@ void Automate::popAndDestroySymbol() {
 }
 
 void Automate::accepte() {
-    cout<<"Expression correcte"<<endl;
+    cout << "Expression correcte" << endl;
+
+    cout << endl;
+    if (!symboles.empty() && dynamic_cast<Expr*>(symboles.back())) {
+        cout << "Résultat : " << dynamic_cast<Expr*>(symboles.back())->eval({}) << endl;
+    }
 }
 
 void Automate::erreur() {
     cout<<"Erreur de syntaxe"<<endl;
+    //exit(1);
 }
 
-void Automate::execute() {
-    Symbole * s = lexer->Consulter();
-    Etat * e = etats.back();
-    while(e->transition() != false) {
-        e = etats.back();
-        s = symboles.back();
-        ///Afficher et vérifier ah zebi
+double Automate::execute() {
+    while (true) {
+        printf("--------------------\n");
+        Symbole *s = lexer->Consulter();
+
+        printf("Symbole lu : ");
+        s->Affiche();
+        printf("\n");
+        
+        Etat * etat_current = etats.back();
+        
+        if (etat_current->transition(*this, s)) {
+            break;
+        }
+
+        lexer->Avancer();
+
+        printf("Liste des états : ");
+        for (auto etat : etats) {
+            cout << etat->getName() << " ";
+        }
+        cout << endl;
+
+        printf("Contenu de la pile : ");
+        for (auto symbole : symboles) {
+            symbole->Affiche();
+            cout << " ";
+        }
+        cout << endl;
+        printf("--------------------\n");
+        
     }
-    
+
+    return 0;
+}
+
+Automate::~Automate() {
+    for (auto symbole : symboles) {
+        delete symbole;
+    }
+    symboles.clear();
+
+    for (auto etat : etats) {
+        delete etat;
+    }
+    etats.clear();
 }

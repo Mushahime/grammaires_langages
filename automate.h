@@ -13,9 +13,9 @@ class Automate {
         void transitionsimple(Symbole * s, Etat * e);
         void accepte();
         void erreur();
-         Symbole * popSymbol();
-         void popAndDestroySymbol();
-         void execute();
+        Symbole * popSymbol();
+        void popAndDestroySymbol();
+        double execute();
    protected:
         vector<Symbole *> symboles;
         vector<Etat *> etats;

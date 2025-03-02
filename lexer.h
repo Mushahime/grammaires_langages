@@ -12,6 +12,7 @@ class Lexer {
 
       Symbole * Consulter();
       void Avancer();
+      void TeteMoinsUn() { tete--; }
 
    protected:
       string flux;

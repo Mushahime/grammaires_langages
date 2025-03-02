@@ -4,10 +4,13 @@ Symbole * Lexer::Consulter() {
    if (!tampon) {
 
       if (tete==flux.length())
+      {
          tampon = new Symbole(FIN);
+         tete++;
+      }
       else
       {
-
+         printf("flux[tete] = %c\n", flux[tete]);
          switch (flux[tete]) {
             case '(':
                tampon = new Symbole(OPENPAR);
@@ -50,11 +53,11 @@ Symbole * Lexer::Consulter() {
 }
 
 void Lexer::Avancer() {
-   delete tampon;
+   //delete tampon;
    tampon = nullptr;
 }
 
 Lexer::~Lexer() {
-   delete tampon;
+   if (tampon) delete tampon;
 }
 

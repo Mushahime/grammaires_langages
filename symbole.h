@@ -2,9 +2,10 @@
 
 #include <string>
 #include <map>
+#include <iostream>
 using namespace std;
 
-enum Identificateurs { OPENPAR, CLOSEPAR, PLUS, MULT, INT, FIN, ERREUR, EXPR, VARIABLE };
+enum Identificateurs { OPENPAR, CLOSEPAR, PLUS, MULT, INT, FIN, ERREUR, EXPR };
 
 const string Etiquettes[] = { "OPENPAR", "CLOSEPAR", "PLUS", "MULT", "INT", "FIN", "ERREUR", "EXPR" };
 
@@ -35,6 +36,7 @@ class Expr : public Symbole {
        Expr():Symbole(EXPR) {}
        virtual ~Expr() {}
        virtual double eval (const map<string,double> & valeurs) =0;
+       virtual void Affiche() { cout << "EXPR"; }
 };
 
 // E + E
