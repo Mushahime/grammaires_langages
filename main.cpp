@@ -2,8 +2,10 @@
 #include "lexer.h"
 #include "automate.h"
 
+// Fonction principale
+
 int main(void) {
-   string chaine("((5*3)+(8*4))+5*2");
+   string chaine("3*3+3");
    Lexer l(chaine);
    Automate * a = new Automate(&l);
 

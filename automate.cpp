@@ -1,6 +1,7 @@
 #include "automate.h"
 #include <iostream>
 
+// Reduit n symboles en un seul symbole s -> depilement de etats. Applique ensuite la transition de l'état courant avec ce symbole
 void Automate::reduction(int n,Symbole * s) {
     for (int i=0; i<n; i++)
     {
@@ -12,13 +13,13 @@ void Automate::reduction(int n,Symbole * s) {
     etats.back()->transition(*this,s);
 }
 
+// Ajoute un symbole s et un état e à la pile sans réduire ni avancer dans le lexer (cas où l'on n'a pas traité le symbole du lexer : symbole non terminal)
 void Automate::transitionsimple(Symbole * s, Etat * e) {
     symboles.push_back(s);
     etats.push_back(e);
-
-    //lexer->TeteMoinsUn();
 }
 
+// Ajoute un symbole s et un état e à la pile et avance dans le lexer (décalage <=> on a traité le symbole du lexer)
 void Automate::decalage(Symbole * s, Etat * e) {
     symboles.push_back(s);
 
@@ -26,17 +27,20 @@ void Automate::decalage(Symbole * s, Etat * e) {
     lexer->Avancer();
 }
 
+// Récupère le dernier symbole de la pile de symboles (cas où l'on veut récupérer le symbole pour le traiter : un entier par exemple)
 Symbole * Automate::popSymbol() {
     Symbole * s = symboles.back();
     symboles.pop_back();
     return s;
 }
 
+// Supprime le dernier symbole de la pile de symboles (cas où l'on veut supprimer le symbole sans le traiter : un opérateur par exemple)
 void Automate::popAndDestroySymbol() {
     delete symboles.back();
     symboles.pop_back();
 }
 
+// Accepte l'expression si elle est correcte et affiche le résultat
 void Automate::accepte() {
     cout << "Expression correcte" << endl;
 
@@ -46,11 +50,13 @@ void Automate::accepte() {
     }
 }
 
+// Affiche une erreur de syntaxe
 void Automate::erreur() {
-    cout<<"Erreur de syntaxe"<<endl;
+    cout<<"Erreur de syntaxe : revoir votre input !"<<endl;
     exit(1);
 }
 
+// Exécute l'automate : on récupère le symbole courant, on applique la transition de l'état courant avec ce symbole
 double Automate::execute() {
     while (true) {
         printf("--------------------\n");
@@ -65,8 +71,6 @@ double Automate::execute() {
         if (etat_current->transition(*this, s)) {
             break;
         }
-
-        //lexer->Avancer();
 
         printf("Liste des états : ");
         for (auto etat : etats) {
@@ -87,6 +91,7 @@ double Automate::execute() {
     return 0;
 }
 
+// Destructeur de l'automate
 Automate::~Automate() {
 
     for (auto symbole : symboles) {

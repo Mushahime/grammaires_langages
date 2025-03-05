@@ -3,8 +3,12 @@
 using namespace std;
 #include "symbole.h"
 
-class Automate;
+// Définit les différents états de l'automate et leurs transitions.
 
+class Automate; // Forward declaration
+
+
+// Classe abstraite Etat : définit les méthodes de transition et de récupération du nom de l'état
 class Etat {
    public:
       Etat(string name) : name(name) { }
@@ -15,6 +19,7 @@ class Etat {
       string name;
 };
 
+// Classes héritées de Etat : implémentent les transitions de l'automate
 class E0 : public Etat {
    public:
       E0() : Etat("Etat0") { }
