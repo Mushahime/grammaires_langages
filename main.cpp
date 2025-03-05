@@ -2,23 +2,15 @@
 #include "lexer.h"
 #include "automate.h"
 
+// Fonction principale
 
 int main(void) {
-   string chaine("(1+34)*123");
-
+   string chaine("3*3+3");
    Lexer l(chaine);
-
-   Symbole * s;
    Automate * a = new Automate(&l);
 
-   while(*(s=l.Consulter())!=FIN) {
-      s->Affiche();
-      cout<<endl;
-      l.Avancer();
-   }
+   a->execute(); 
 
-   
-
+   delete a; 
    return 0;
 }
-

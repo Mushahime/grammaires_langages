@@ -1,13 +1,19 @@
 #include "lexer.h"
 
+// Méthodes de la classe Lexer qui permet de découper l'entrée en tokens exploitables par l'analyseur syntaxique
 Symbole * Lexer::Consulter() {
+   // on ne lit un nouveau symbole que si l'ancien a été consommé
    if (!tampon) {
-
+      // ajout du symbole de fin de chaine $
       if (tete==flux.length())
+      {
          tampon = new Symbole(FIN);
+         tete++;
+      }
+      // sinon on lit le caractère courant et on détermine le symbole terminal correspondant : création du symbole
       else
       {
-
+         printf("flux[tete] = %c\n", flux[tete]);
          switch (flux[tete]) {
             case '(':
                tampon = new Symbole(OPENPAR);
@@ -25,11 +31,8 @@ Symbole * Lexer::Consulter() {
                tampon = new Symbole(PLUS);
                tete++;
                break;
-            case 'E':
-               tampon = new Symbole(EXPR);
-               tete++;
-               break;
             default:
+               // si ce n'est ni un opérateur ni une parenthèse, on lit un entier ou on signale une erreur si rien ne correspond
                if (flux[tete]<='9' && flux[tete]>='0') {
                   int resultat = flux[tete]-'0';
                   int i=1;
@@ -50,7 +53,7 @@ Symbole * Lexer::Consulter() {
 }
 
 void Lexer::Avancer() {
-   delete tampon;
+   // m.a.j. du tampon
    tampon = nullptr;
 }
 
