@@ -54,7 +54,8 @@ Note : - L'addition (+) et la multiplication (*) sont associatives à gauche.
 
 ## Architecture du projet 
 
-Le projet est structuré autour de plusieurs modules :    
+Le projet est structuré autour de plusieurs modules :      
+
 📌 Automate (automate.cpp, automate.h)
 Gère l'exécution de l'analyse syntaxique en appliquant les règles de transition entre les états.  
   
