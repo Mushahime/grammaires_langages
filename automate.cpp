@@ -52,8 +52,19 @@ void Automate::accepte() {
 
 // Affiche une erreur de syntaxe
 void Automate::erreur() {
-    cout<<"Erreur de syntaxe : revoir votre input !"<<endl;
-    exit(1);
+    Symbole *s = lexer->Consulter();
+    if (!symboles.empty()) {
+        if (symboles.back()->getIdent() == PLUS || symboles.back()->getIdent() == MULT ) {
+            cout<<"[ERREUR] Après un + ou un *, vous devez mettre '(' ou un entier" << endl;
+            cout<<"Vous avez entré: ";
+            cout << lexer->getCurrent() <<endl;
+        }
+    }
+    else {
+            cout<<"[ERREUR] Vous avez rentrer un caractère invalide (qui n'est ni un symbole accepté ni un entier) : ";
+            cout << lexer->getCurrent() <<endl;
+        }
+    
 }
 
 // Exécute l'automate : on récupère le symbole courant, on applique la transition de l'état courant avec ce symbole
@@ -61,7 +72,6 @@ double Automate::execute() {
     while (true) {
         printf("--------------------\n");
         Symbole *s = lexer->Consulter();
-
         printf("Symbole lu : ");
         s->Affiche();
         printf("\n");

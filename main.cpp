@@ -5,7 +5,9 @@
 // Fonction principale
 
 int main(void) {
-   string chaine("3*3+3");
+   string chaine;
+   cout << "Veuillez entrer une expression à calculer (sans espaces)" << endl;
+   cin >> chaine;
    Lexer l(chaine);
    Automate * a = new Automate(&l);
 

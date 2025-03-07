@@ -1,4 +1,4 @@
-# Grammaires et langages ! Projet d'Analyse Syntaxique et Évaluation d'Expression Arithmétique
+# Grammaires et langages : Projet d'Analyse Syntaxique et Évaluation d'Expression Arithmétique
 
 ## Auteurs
 - **MARIAT Quentin**
@@ -25,7 +25,7 @@ cmake -DCMAKE_BUILD_TYPE=Debug ..
 
 ### 2. Compilation
 ```sh
-cd build
+cd build #Si vous n'êtes pas déja dans le répertoire build
 make
 ```
 

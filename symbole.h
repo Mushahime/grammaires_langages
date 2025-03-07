@@ -18,6 +18,7 @@ class Symbole {
       virtual ~Symbole() { }
       operator int() const { return ident; }
       virtual void Affiche();
+      int getIdent() {return ident;}
 
    protected:
       int ident; // Identificateur du symbole
