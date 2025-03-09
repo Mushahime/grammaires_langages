@@ -18,7 +18,7 @@ bool E0::transition(Automate & automate, Symbole * s) {
             break;
         default: // Erreur si le symbole n'est pas un entier, une parenthèse ou un symbole non terminal
             automate.erreur();
-            break;
+            return true;
     }
     return false;
 }

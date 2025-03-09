@@ -44,6 +44,7 @@ Symbole * Lexer::Consulter() {
                   tampon = new Entier(resultat);
                }
                else {
+                  tete++; //Utile pour afficher l'emplacement de l'erreur plus facilement
                   tampon = new Symbole(ERREUR);
                }
          }

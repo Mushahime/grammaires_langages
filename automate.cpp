@@ -1,4 +1,5 @@
 #include "automate.h"
+#include "string.h"
 #include <iostream>
 
 // Reduit n symboles en un seul symbole s -> depilement de etats. Applique ensuite la transition de l'état courant avec ce symbole
@@ -59,6 +60,9 @@ void Automate::erreur() {
             cout<<"Vous avez entré: ";
             cout << lexer->getCurrentError() <<endl;
         }
+        else if (lexer->getCurrentError() == ')' && strcmp(etats.back()->getName().c_str(), "Etat2") == 0) {
+            cout<<"[ERREUR] Vous avez deux parenthèses qui ne contiennent rien" << endl;
+        }
         else if (lexer->getCurrentError() == ')') {
             cout<<"[ERREUR] Vous avez fermé une parenthèse que vous n'avez pas ouverte..." << endl;
         }
@@ -69,7 +73,8 @@ void Automate::erreur() {
         }
     }
     else {
-            cout<<"[ERREUR] Vous avez rentrer un caractère invalide (qui n'est ni un symbole accepté ni un entier) : ";
+            cout<<"[ERREUR] Vous devez commencer votre expression par un entier, ou '('";
+            cout<<"Vous avez entré: ";
             cout << lexer->getCurrentError() <<endl;
     }
     
