@@ -13,7 +13,7 @@ class Lexer {
       ~Lexer() ;
       Symbole * Consulter();
       void Avancer();
-      char getCurrent() {return flux[tete];}
+      char getCurrentError() {return flux[tete-1];}
 
    protected:
       string flux; // Chaine de caractères à analyser : exemple "3*3+3"
