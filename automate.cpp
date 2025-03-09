@@ -55,15 +55,23 @@ void Automate::erreur() {
     Symbole *s = lexer->Consulter();
     if (!symboles.empty()) {
         if (symboles.back()->getIdent() == PLUS || symboles.back()->getIdent() == MULT ) {
-            cout<<"[ERREUR] Après un + ou un *, vous devez mettre '(' ou un entier" << endl;
+            cout<<"[ERREUR] Après un + ou un *, vous devez mettre '(' ou un entier." << endl;
             cout<<"Vous avez entré: ";
-            cout << lexer->getCurrent() <<endl;
+            cout << lexer->getCurrentError() <<endl;
+        }
+        else if (lexer->getCurrentError() == ')') {
+            cout<<"[ERREUR] Vous avez fermé une parenthèse que vous n'avez pas ouverte..." << endl;
+        }
+        else {
+            cout<<"[ERREUR] Après un entier, vous devez mettre ')', ou '+' ou '*'. " << endl;
+            cout<<"Vous avez entré: ";
+            cout << lexer->getCurrentError() <<endl;
         }
     }
     else {
             cout<<"[ERREUR] Vous avez rentrer un caractère invalide (qui n'est ni un symbole accepté ni un entier) : ";
-            cout << lexer->getCurrent() <<endl;
-        }
+            cout << lexer->getCurrentError() <<endl;
+    }
     
 }
 
