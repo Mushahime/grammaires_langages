@@ -73,7 +73,7 @@ void Automate::erreur() {
         }
     }
     else {
-            cout<<"[ERREUR] Vous devez commencer votre expression par un entier, ou '('";
+            cout<<"[ERREUR] Vous devez commencer votre expression par un entier, ou '(' " << endl;
             cout<<"Vous avez entré: ";
             cout << lexer->getCurrentError() <<endl;
     }
